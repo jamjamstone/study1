@@ -4,10 +4,43 @@
     {
         public string classString; //클래스 내에 선언된 요소들을 멤버라고 한다.
         public int classInt;
-        public void classMethod()
+        public int classInt2;
+        public void ClassMethod(int classint)
         {
-
+            this.classInt = classint;// this.변수이름 은 클래스안에 소속된 메소드에서 사용하는 변수이름과 클래스에서 사용하는 변수 이름이 같을 때 this를 붙여 클래스에서 사용하는 변수임을
+            // 나타내는 방법이다.
         }
+
+        public testClass()//생성자
+        {
+            this.classInt = 123;
+        }
+        public testClass(int classint2) //classint2를 입력받으면
+        {
+            this.classInt = 123;
+            this.classInt2 = classint2; //testclass의 classint2에 입력받은 classint2대입
+        }
+        /*public testClass(int classint2) : this() //this()는 생성자에만 사용 가능하며 생성자를 불러온다. 이 코드는 testClass()을 호출한 뒤에 testClass(int classint2)를 호출한것과 같다.
+        {
+            
+            this.classInt2 = classint2;
+        }*/
+
+
+
+
+    }
+}
+
+namespace study1
+{
+    class legacy : testClass //클래스 상속 방법 : 상속해줄 클래스 이름 -> 상속해주는 클래스가 가진 모든 public을 사용가능
+    {
+        public int legacyInt;
+        public legacy(){
+            Console.WriteLine("legacy class");
+        }
+        
     }
     internal class Program
     {
@@ -32,6 +65,7 @@
         static void Main(string[] args)
         {
 
+            legacy legacy = new legacy();
 
             int[] array=new int[] { 1,2,3,4,5};
             foreach (int i in array) { // for문을 이용한 배열 탐색과 비슷 예시) for(int i=0;i<length.arr;i++) 과 같은 문구
@@ -60,7 +94,7 @@
 
             testClass testClass = new testClass();
             testClass.classInt = 1;
-            testClass.classMethod();
+            testClass.ClassMethod(1);
             testClass.classString = "test";
 
 
